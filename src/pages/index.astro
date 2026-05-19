@@ -1,13 +1,11 @@
----
 import Layout from '../layouts/Layout.astro';
 
-// Cloudflare Images CDN URLs — global edge delivery
-const cfBase = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00";
-const heroImage = `${cfBase}/public`;
-const scriptImage = `${cfBase}/public`;
-const desertImage = `${cfBase}/public`;
-const summerImage = `${cfBase}/public`;
-const filmReelImage = `${cfBase}/public`;
+// Cloudflare Images CDN URLs — 5 unique images across all visual sections
+const heroImage     = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00/public"; // hero bg
+const scriptImage   = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/5b08b96d-d101-4c0e-c28c-305e254a4d00/public"; // story card
+const desertImage   = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/28293599-e506-4e0c-a035-d66082002300/public"; // visual language #1
+const summerImage   = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/090e68be-2df8-4f44-0375-81aef41e0c00/public"; // visual language #2
+const filmReelImage = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/fb0d2031-fb70-48bc-00d3-dd58ad8f1900/public"; // visual language #3
 ---
 
 <Layout>
@@ -133,6 +131,25 @@ const filmReelImage = `${cfBase}/public`;
     </div>
   </section>
 
+  <!-- PREMISE ATMOSPHERE IMAGE -->
+  <div class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="relative overflow-hidden rounded-3xl aspect-[21/9] border border-white/10">
+      <img
+        src={summerImage}
+        alt="Golden light filtering through desert trees — the atmosphere of long, sun-drenched summers"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/70"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <blockquote class="text-center max-w-xl px-6">
+          <p class="text-2xl md:text-3xl font-light italic text-white/90 leading-snug">
+            "Some summers burn so bright<br>they illuminate every one that follows."
+          </p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
   <div class="section-divider max-w-5xl mx-auto"></div>
 
   <!-- THE STORY -->
@@ -204,7 +221,7 @@ const filmReelImage = `${cfBase}/public`;
         </div>
 
         <div class="group relative overflow-hidden rounded-2xl aspect-video border border-white/10">
-          <img src={summerImage} alt="Lush summer lake at golden hour — representing the 'good' summers we chase" class="w-full h-full object-cover transition-transform group-hover:scale-105 duration-700" />
+          <img src={heroImage} alt="Lush summer landscape at golden hour — representing the 'good' summers we chase" class="w-full h-full object-cover transition-transform group-hover:scale-105 duration-700" />
           <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 p-6">
             <div class="text-sm font-medium">THE GOOD SUMMERS</div>
             <div class="text-xs text-white/60">Light we carry forward</div>
@@ -292,6 +309,19 @@ const filmReelImage = `${cfBase}/public`;
           </p>
           <p class="mt-4 text-xs">— Eric R. Gutierrez, Writer &amp; Creator</p>
         </div>
+
+        <!-- Development atmosphere image -->
+        <div class="mt-10 relative overflow-hidden rounded-2xl aspect-[16/7] border border-white/10">
+          <img
+            src={scriptImage}
+            alt="Pages of the 50 Good Summers screenplay — a work in progress toward cinematic greatness"
+            class="w-full h-full object-cover grayscale-[0.2]"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <div class="text-[10px] tracking-[3px] text-[#d4af37]/80">THIRD DRAFT — 2026</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -324,6 +354,20 @@ const filmReelImage = `${cfBase}/public`;
         This is more than a script. It is an invitation to create something timeless.<br>
         We are seeking visionary producers and directors ready to turn this story into a landmark American film.
       </p>
+
+      <!-- Acquire atmosphere -->
+      <div class="relative overflow-hidden rounded-3xl aspect-[21/9] mb-10 border border-white/10">
+        <img
+          src={desertImage}
+          alt="Sun setting over the American Southwest — the final act of a day, like the final summers of a life"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+        <div class="absolute inset-0 flex items-end justify-center pb-8">
+          <p class="text-sm tracking-[3px] text-[#d4af37]/80">THE SUN SETS — BUT THE STORY ENDURES</p>
+        </div>
+      </div>
+
       <div class="bg-[#111] border border-[#d4af37]/30 rounded-3xl p-12 mb-8">
         <div class="text-sm tracking-widest text-[#d4af37] mb-2">ACQUISITION INQUIRIES</div>
         <a
