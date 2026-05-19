@@ -1,14 +1,13 @@
----
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets'; // For future CF Images optimization
 
-// Placeholder images - TODO: Replace ALL with Cloudflare Images CDN URLs for global edge performance
-// Example CF URL: https://imagedelivery.net/<ACCOUNT_ID>/<IMAGE_ID>/public
-const heroImage = "/images/50-poster.jpg"; // Custom generated cinematic key art — replace with Cloudflare Images CDN URL in production for global edge delivery
-const scriptImage = "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80";
-const desertImage = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80";
-const summerImage = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80";
-const filmReelImage = "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80";
+// Cloudflare Images CDN URLs — global edge delivery
+const cfBase = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00";
+const heroImage = `${cfBase}/public`;
+const scriptImage = `${cfBase}/public`;
+const desertImage = `${cfBase}/public`;
+const summerImage = `${cfBase}/public`;
+const filmReelImage = `${cfBase}/public`;
 ---
 
 <Layout>
@@ -185,7 +184,7 @@ const filmReelImage = "https://images.unsplash.com/photo-1485846234645-a62644f84
 
     <div class="mt-16 max-w-3xl mx-auto text-[#b8ad95] text-[15px] leading-relaxed space-y-6">
       <p>
-        The narrative unfolds across three timelines: the protagonist’s childhood summers of wonder, the reckless summers of his twenties, and the urgent, luminous summers of his present — all converging toward one final, transcendent season.
+        The narrative unfolds across three timelines: the protagonist's childhood summers of wonder, the reckless summers of his twenties, and the urgent, luminous summers of his present — all converging toward one final, transcendent season.
       </p>
       <p>
         It is a love letter to the American landscape, to second chances, and to the radical idea that it is never too late to live a life of intention.
