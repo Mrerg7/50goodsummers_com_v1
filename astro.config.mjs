@@ -10,7 +10,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'monthly',
       priority: 0.9,
-      lastmod: new Date('2026-05-19'),
     }),
   ],
   output: 'static',
