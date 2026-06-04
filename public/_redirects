@@ -1,0 +1,6 @@
+# Redirect www to apex (non-www canonical)
+https://www.50goodsummers.com/* https://50goodsummers.com/:splat 301
+
+# Redirect HTTP to HTTPS
+http://50goodsummers.com/* https://50goodsummers.com/:splat 301
+http://www.50goodsummers.com/* https://50goodsummers.com/:splat 301

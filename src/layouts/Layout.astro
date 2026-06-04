@@ -12,8 +12,12 @@ const {
   title = "50 Good Summers | A Cinematic Story in Development",
   description = "As long as you live and how you live, you are only granted 50 good summers, no more, no less. An original movie script in active development. Acquire the rights today.",
   image = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00/public",
-  canonical = "https://50goodsummers.com",
+  canonical: explicitCanonical,
 } = Astro.props;
+
+// Dynamically derive canonical from Astro.url to match the actual page URL,
+// preventing "Alternate page with proper canonical tag" indexing issues.
+const canonical = explicitCanonical || new URL(Astro.url.pathname, Astro.site).href;
 
 const structuredData = {
   "@context": "https://schema.org",
