@@ -1,0 +1,11 @@
+# Canonical enforcement for root — required for GSC to resolve canonical
+/
+  Link: <https://50goodsummers.com/>; rel="canonical"
+
+# Sitemap content-type — ensures proper XML serving
+/sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+
+# Prevent indexing of 404 page
+/404.html
+  X-Robots-Tag: noindex
