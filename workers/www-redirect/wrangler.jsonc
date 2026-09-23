@@ -1,0 +1,6 @@
+{
+  "name": "www-50goodsummers-redirect",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": false
+}

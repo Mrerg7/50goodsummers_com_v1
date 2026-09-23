@@ -1,0 +1,23 @@
+{
+  "name": "50 Good Summers",
+  "short_name": "50 Good Summers",
+  "description": "An original feature screenplay by Eric R. Gutierrez — worldwide rights available.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

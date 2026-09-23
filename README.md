@@ -11,10 +11,19 @@ A cinematic feature film screenplay in active development. This is the official 
 - ⚡️ **Astro 4** static site — lightning fast, zero JS bloat
 - ☁️ **Cloudflare Pages** global edge deployment
 - 🖼️ **Cloudflare Images CDN** (replace Unsplash placeholders with your CF delivery URLs)
-- 🔍 **Full Structured Data** (Movie schema + JSON-LD)
-- 📱 **Complete Open Graph & Twitter Cards**
-- 🗺️ **Auto-generated Sitemap + robots.txt**
+- 🔍 **Full Structured Data** — `@graph` JSON-LD (WebSite, Organization, Person, Movie, FAQPage, AboutPage, BreadcrumbList)
+- 📱 **Complete Open Graph & Twitter Cards** with image alt text
+- 🗺️ **Static sitemap.xml + robots.txt** + IndexNow key for instant indexing
+- 📄 **Supporting content pages** — About, FAQ, Press kit, Privacy, Terms (internal linking for topical authority)
+- 🤖 **llms.txt** for LLM/answer-engine discovery
 - ✉️ **Single Acquisition CTA** routed directly to `sales@desertrich.com`
+
+## SEO
+
+- Canonical URLs normalized to trailing slashes (matches `trailingSlash: 'always'`)
+- HSTS, immutable asset caching, and sitemap XML content-type via `public/_headers`
+- Path-level 301s for non-slash URLs via `public/_redirects` (www→apex and HTTP→HTTPS live at the Cloudflare zone level)
+- IndexNow key: `public/1b2151a15ad17fdd6c236a587fa123c3.txt` — after deploy, submit `https://50goodsummers.com/sitemap.xml` to Google Search Console + Bing Webmaster Tools and ping IndexNow
 
 ## Tech Stack
 
