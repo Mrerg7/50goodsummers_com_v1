@@ -5,42 +5,89 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   canonical?: string;
+  robots?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
-  title = "50 Good Summers | A Cinematic Story in Development",
-  description = "As long as you live and how you live, you are only granted 50 good summers, no more, no less. An original movie script in active development. Acquire the rights today.",
-  image = "https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00/public",
+  title = '50 Good Summers — Original Screenplay for Sale | Film Rights',
+  description = 'An original 118-page feature screenplay in third draft. A man with only a handful of summers left fights to make the rest count. Worldwide rights available.',
+  image = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00/public',
+  imageAlt = 'Key art for 50 Good Summers — the sun setting over the American Southwest',
   canonical: explicitCanonical,
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  structuredData,
 } = Astro.props;
 
-// Dynamically derive canonical from Astro.url to match the actual page URL,
-// preventing "Alternate page with proper canonical tag" indexing issues.
-const canonical = explicitCanonical || new URL(Astro.url.pathname, Astro.site).href;
+// Normalize path to trailing slash (site uses trailingSlash: 'always') so
+// canonical URLs always match the deployed URL and sitemap entries.
+let pathname = Astro.url.pathname;
+if (!pathname.endsWith('/')) pathname += '/';
+const canonical = explicitCanonical || new URL(pathname, Astro.site).href;
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Movie",
-  "name": "50 Good Summers",
-  "description": "A powerful cinematic drama exploring the finite beauty of life through the lens of 50 precious summers. Currently in development as an original feature film screenplay.",
-  "url": "https://50goodsummers.com",
-  "image": image,
-  "genre": ["Drama", "Philosophical", "Character Study"],
-  "director": { "@type": "Person", "name": "TBD" },
-  "author": { "@type": "Person", "name": "Eric R. Gutierrez" },
-  "productionCompany": { "@type": "Organization", "name": "Desert Rich Productions" },
-  "inProduction": true,
-  "dateCreated": "2025",
-  "keywords": "50 good summers, movie script, film development, life reflection, mortality, summer stories, cinematic drama",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "price": "Contact for acquisition",
-    "priceCurrency": "USD",
-    "url": "mailto:sales@desertrich.com"
-  }
+const SITE_URL = 'https://50goodsummers.com';
+
+const organization = {
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/#organization`,
+  name: 'Desert Rich Productions',
+  url: `${SITE_URL}/`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/apple-touch-icon.png`,
+    width: 180,
+    height: 180,
+  },
+  description:
+    'Desert Rich Productions is the production entity presenting the original feature screenplay 50 Good Summers for acquisition worldwide.',
+  founder: { '@id': `${SITE_URL}/#person` },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Acquisitions',
+    url: `${SITE_URL}/#acquire`,
+  },
+  sameAs: ['https://x.com/ERG963', 'https://github.com/Mrerg7'],
 };
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  name: '50 Good Summers',
+  alternateName: '50 Good Summers Screenplay',
+  url: `${SITE_URL}/`,
+  description,
+  inLanguage: 'en-US',
+  publisher: { '@id': `${SITE_URL}/#organization` },
+};
+
+const person = {
+  '@type': 'Person',
+  '@id': `${SITE_URL}/about/#person`,
+  name: 'Eric R. Gutierrez',
+  url: `${SITE_URL}/about/`,
+  jobTitle: 'Screenwriter',
+  description:
+    'Writer and creator of the original feature screenplay 50 Good Summers, presented by Desert Rich Productions.',
+  worksFor: { '@id': `${SITE_URL}/#organization` },
+  sameAs: ['https://x.com/ERG963', 'https://github.com/Mrerg7'],
+};
+
+const pageData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+
+const jsonLd = JSON.stringify(
+  {
+    '@context': 'https://schema.org',
+    '@graph': [website, organization, person, ...pageData],
+  },
+  null,
+  0,
+).replace(/</g, '\\u003c');
 ---
 
 <!DOCTYPE html>
@@ -49,6 +96,8 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0a0a" />
 
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="U6FcNmeIDQIsYubiHOOAwe7vhMSoQUtSXvjSK4_uGnI" />
@@ -57,9 +106,12 @@ const structuredData = {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="50 good summers, movie script, film in development, cinematic story, life is short, 50 summers, screenplay, feature film, desert rich, eric gutierrez" />
+    <meta
+      name="keywords"
+      content="50 good summers, original screenplay, feature film screenplay for sale, screenplay rights, film rights available, movie script for sale, dramatic feature screenplay, desert rich productions, eric r. gutierrez, film in development"
+    />
     <meta name="author" content="Eric R. Gutierrez" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
@@ -68,31 +120,37 @@ const structuredData = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="50 Good Summers" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonical} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-    <meta property="twitter:creator" content="@ERG963" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:creator" content="@ERG963" />
 
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <!-- Structured Data (WebSite + Organization + Person + page graph) -->
+    <script type="application/ld+json" set:html={jsonLd} />
 
-    <!-- Favicon -->
+    <!-- Favicon & Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Preconnect -->
     <link rel="preconnect" href="https://imagedelivery.net" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-[#0a0a0a] text-[#f5f5f5] font-sans overflow-x-hidden">
     <slot />

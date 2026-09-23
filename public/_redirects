@@ -1,6 +1,11 @@
-# Redirect www to apex (non-www canonical)
-https://www.50goodsummers.com/* https://50goodsummers.com/:splat 301
+# NOTE: HTTP→HTTPS ("Always Use HTTPS") and www→apex host redirects are
+# configured at the Cloudflare zone level (Redirect Rules), not here —
+# Cloudflare Pages _redirects only matches paths, not hostnames.
 
-# Redirect HTTP to HTTPS
-http://50goodsummers.com/* https://50goodsummers.com/:splat 301
-http://www.50goodsummers.com/* https://50goodsummers.com/:splat 301
+# Legacy/alternate paths → canonical trailing-slash URLs (301)
+/about            /about/            301
+/faq              /faq/              301
+/press            /press/            301
+/privacy          /privacy/          301
+/terms            /terms/            301
+/desertrich       /desertrich/       301
