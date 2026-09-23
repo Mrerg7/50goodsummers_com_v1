@@ -1,0 +1,107 @@
+---
+export interface Props {
+  crumbs?: { label: string; href?: string }[];
+}
+
+const { crumbs = [] } = Astro.props;
+
+const year = new Date().getFullYear();
+---
+
+<div class="min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-x-6">
+      <a href="/" class="flex items-center gap-x-2.5 group shrink-0" aria-label="50 Good Summers — home">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8972e] flex items-center justify-center">
+          <span class="text-[#0a0a0a] font-bold text-base tracking-tighter">50</span>
+        </div>
+        <span class="font-semibold tracking-[2.5px] text-xs group-hover:text-[#d4af37] transition-colors">
+          50 GOOD SUMMERS
+        </span>
+      </a>
+
+      <nav aria-label="Primary" class="hidden md:flex items-center gap-x-8 text-xs tracking-[2px] text-white/70">
+        <a href="/about/" class="hover:text-[#d4af37] transition-colors">ABOUT</a>
+        <a href="/faq/" class="hover:text-[#d4af37] transition-colors">FAQ</a>
+        <a href="/press/" class="hover:text-[#d4af37] transition-colors">PRESS</a>
+        <a
+          href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%2050%20Good%20Summers"
+          class="px-4 py-2 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#0a0a0a] transition-all rounded-full"
+        >
+          ACQUIRE RIGHTS
+        </a>
+      </nav>
+
+      <a href="/faq/" class="md:hidden text-xs tracking-[2px] text-[#d4af37]">FAQ</a>
+    </div>
+  </header>
+
+  {
+    crumbs.length > 0 && (
+      <nav aria-label="Breadcrumb" class="max-w-5xl mx-auto w-full px-6 pt-6">
+        <ol class="flex flex-wrap items-center gap-x-2 text-[11px] tracking-[2px] text-white/40 uppercase">
+          <li>
+            <a href="/" class="hover:text-[#d4af37] transition-colors">Home</a>
+          </li>
+          {crumbs.map((crumb) => (
+            <li class="flex items-center gap-x-2" aria-current={crumb.href ? undefined : 'page'}>
+              <span class="text-white/20" aria-hidden="true">
+                ›
+              </span>
+              {crumb.href ? (
+                <a href={crumb.href} class="hover:text-[#d4af37] transition-colors">
+                  {crumb.label}
+                </a>
+              ) : (
+                <span class="text-[#d4af37]/80">{crumb.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )
+  }
+
+  <main class="flex-1 w-full">
+    <slot />
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#050505] py-12">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-6 mb-8">
+        <a href="/" class="flex items-center gap-x-2.5 group" aria-label="50 Good Summers — home">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8972e] flex items-center justify-center">
+            <span class="text-[#0a0a0a] text-lg font-bold tracking-tighter">50</span>
+          </div>
+          <span class="font-semibold tracking-[2px] text-sm group-hover:text-[#d4af37] transition-colors">
+            50 GOOD SUMMERS
+          </span>
+        </a>
+        <nav aria-label="Footer" class="flex flex-wrap gap-x-6 gap-y-2 text-xs tracking-[1.5px] text-white/60 uppercase">
+          <a href="/" class="hover:text-[#d4af37] transition-colors">Home</a>
+          <a href="/about/" class="hover:text-[#d4af37] transition-colors">About</a>
+          <a href="/faq/" class="hover:text-[#d4af37] transition-colors">FAQ</a>
+          <a href="/press/" class="hover:text-[#d4af37] transition-colors">Press</a>
+          <a href="/privacy/" class="hover:text-[#d4af37] transition-colors">Privacy</a>
+          <a href="/terms/" class="hover:text-[#d4af37] transition-colors">Terms</a>
+        </nav>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 text-xs text-white/40">
+        <div>
+          <p>An original feature film screenplay by Eric R. Gutierrez.</p>
+          <p class="mt-1">© 2025–{year} Desert Rich Productions. All rights reserved.</p>
+        </div>
+        <div class="flex flex-col gap-y-1 md:items-end">
+          <a
+            href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%2050%20Good%20Summers"
+            class="text-[#d4af37]/80 hover:text-[#d4af37] transition-colors"
+          >
+            sales@desertrich.com
+          </a>
+          <span class="text-white/25 tracking-[2px] text-[10px]">MADE WITH PURPOSE IN THE DESERT</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

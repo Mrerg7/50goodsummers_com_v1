@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageChrome from '../components/PageChrome.astro';
+
+const structuredData = [
+  {
+    '@type': 'AboutPage',
+    '@id': 'https://50goodsummers.com/about/#webpage',
+    url: 'https://50goodsummers.com/about/',
+    name: 'About — Desert Rich Productions & 50 Good Summers',
+    description:
+      'About the original feature screenplay 50 Good Summers, writer Eric R. Gutierrez, and Desert Rich Productions.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': 'https://50goodsummers.com/#website' },
+    about: { '@id': 'https://50goodsummers.com/#movie' },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/28293599-e506-4e0c-a035-d66082002300/public',
+    },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://50goodsummers.com/' },
+      { '@type': 'ListItem', position: 2, name: 'About', item: 'https://50goodsummers.com/about/' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="About — Desert Rich Productions & Writer Eric R. Gutierrez | 50 Good Summers"
+  description="Meet the writer and production company behind 50 Good Summers — an original feature screenplay by Eric R. Gutierrez, presented by Desert Rich Productions. Worldwide rights available."
+  canonical="https://50goodsummers.com/about/"
+  structuredData={structuredData}
+>
+  <PageChrome crumbs={[{ label: 'About' }]}>
+    <article class="max-w-3xl mx-auto px-6 py-14 md:py-20">
+      <div class="uppercase tracking-[3px] text-xs text-[#d4af37] mb-4">About the Project</div>
+      <h1 class="text-5xl md:text-6xl leading-none tracking-tighter font-bold mb-6">
+        Desert Rich<br />Productions
+      </h1>
+      <div class="gold-line w-20 mb-10"></div>
+
+      <div class="prose-copy space-y-6 text-[17px] leading-relaxed text-[#d1c7b0]">
+        <p class="text-xl text-[#c9b89a] leading-snug">
+          Desert Rich Productions is the production entity behind
+          <span class="font-semibold text-[#d4af37]">50 Good Summers</span> — an original
+          feature screenplay written and created by Eric R. Gutierrez.
+        </p>
+
+        <p>
+          The project exists to develop one story with total conviction: a meditation on time,
+          legacy, and the radical decision to live fully. Set against the vast, unforgiving
+          beauty of the American Southwest, <em>50 Good Summers</em> follows a man confronting
+          the finite nature of time — and the infinite possibilities that remain if he chooses
+          to live deliberately.
+        </p>
+
+        <p>
+          The screenplay is currently in its third draft at 118 pages, with principal photography
+          targeted for summer 2027. All worldwide rights — including remake, sequel, and
+          television rights — are available for acquisition.
+        </p>
+
+        <div class="bg-[#111] border-l-4 border-[#d4af37] pl-8 py-6 my-10 rounded-r-xl">
+          <p class="italic text-[#d4af37]/90 text-lg leading-snug mb-4">
+            “This screenplay was written with the belief that great cinema doesn't just
+            entertain — it reminds us how to live. Every page has been crafted to feel like
+            a summer you wish would never end.”
+          </p>
+          <p class="text-sm text-white/50 not-italic">— Eric R. Gutierrez, Writer &amp; Creator</p>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl tracking-tight font-bold text-white pt-6">
+          The Writer
+        </h2>
+        <p>
+          Eric R. Gutierrez is the writer and creator of <em>50 Good Summers</em>. He developed
+          the project from concept and logline through three full drafts, including the current
+          director's-cut draft, with a single obsession: making every page feel like a summer
+          worth remembering.
+        </p>
+
+        <h2 class="text-3xl md:text-4xl tracking-tight font-bold text-white pt-6">
+          The Company
+        </h2>
+        <p>
+          Desert Rich Productions develops original feature material for the international
+          market. Its first project, <em>50 Good Summers</em>, is open for producer and director
+          attachments, financing conversations, and full rights acquisition.
+        </p>
+
+        <div class="bg-[#111] border border-[#d4af37]/30 rounded-3xl p-8 md:p-10 text-center mt-10">
+          <div class="text-xs tracking-widest text-[#d4af37] mb-3">ACQUISITION INQUIRIES</div>
+          <p class="text-[#c9b89a] mb-6">
+            Representing <em>50 Good Summers</em>? Ready to take it to the screen?
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%2050%20Good%20Summers"
+              class="cta-button inline-flex items-center justify-center px-8 py-3.5 rounded-full"
+            >
+              EMAIL SALES@DESERTRICH.COM
+            </a>
+            <a
+              href="/faq/"
+              class="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-white/25 hover:bg-white/5 text-sm tracking-widest transition-all"
+            >
+              READ THE FAQ
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </PageChrome>
+</Layout>

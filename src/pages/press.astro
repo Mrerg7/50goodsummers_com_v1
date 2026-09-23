@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageChrome from '../components/PageChrome.astro';
+
+const keyArt = [
+  {
+    url: 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/72e73044-e440-451c-1245-ad5a17d17f00/public',
+    alt: 'Key art — sun setting over the American Southwest, the final act of a day',
+    caption: 'Primary key art — desert sunset',
+  },
+  {
+    url: 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/5b08b96d-d101-4c0e-c28c-305e254a4d00/public',
+    alt: 'Atmosphere still — rainy night, neon liquor store, vintage car, lone figure walking',
+    caption: 'Atmosphere still — night crossroads',
+  },
+  {
+    url: 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/090e68be-2df8-4f44-0375-81aef41e0c00/public',
+    alt: 'Atmosphere still — bleached summer light, a figure shielding their eyes from the sun',
+    caption: 'Atmosphere still — bleached daylight',
+  },
+  {
+    url: 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/28293599-e506-4e0c-a035-d66082002300/public',
+    alt: 'Visual motif — vast golden desert dunes at sunset',
+    caption: 'Visual motif — the desert',
+  },
+];
+
+const facts = [
+  ['Title', '50 Good Summers'],
+  ['Format', 'Original feature screenplay'],
+  ['Genre', 'Drama · Character study · Philosophical'],
+  ['Pages', '118 (third draft, current)'],
+  ['Status', 'In active development'],
+  ['Setting', 'The American Southwest'],
+  ['Target', 'Principal photography — summer 2027'],
+  ['Rights', 'Worldwide, including remake, sequel & television'],
+];
+
+const structuredData = [
+  {
+    '@type': 'WebPage',
+    '@id': 'https://50goodsummers.com/press/#webpage',
+    url: 'https://50goodsummers.com/press/',
+    name: 'Press & Media Kit — 50 Good Summers',
+    description:
+      'Official press and media kit for 50 Good Summers: logline, synopsis, project facts, key art, and press contact.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': 'https://50goodsummers.com/#website' },
+    about: { '@id': 'https://50goodsummers.com/#movie' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://50goodsummers.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Press', item: 'https://50goodsummers.com/press/' },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Press & Media Kit — 50 Good Summers Original Screenplay"
+  description="Official press kit for 50 Good Summers: logline, synopsis, project facts, pull quotes, key art, and press contact for interviews and coverage."
+  canonical="https://50goodsummers.com/press/"
+  structuredData={structuredData}
+>
+  <PageChrome crumbs={[{ label: 'Press' }]}>
+    <article class="max-w-3xl mx-auto px-6 py-14 md:py-20">
+      <div class="uppercase tracking-[3px] text-xs text-[#d4af37] mb-4">For Press &amp; Media</div>
+      <h1 class="text-5xl md:text-6xl leading-none tracking-tighter font-bold mb-6">
+        Media Kit
+      </h1>
+      <div class="gold-line w-20 mb-10"></div>
+      <p class="text-xl text-[#c9b89a] leading-snug mb-12">
+        Everything you need to write about
+        <span class="font-semibold text-[#d4af37]">50 Good Summers</span> — boilerplate,
+        logline, facts, and downloadable key art.
+      </p>
+
+      <section class="mb-14" aria-labelledby="boilerplate">
+        <h2 id="boilerplate" class="text-3xl tracking-tight font-bold mb-5">Boilerplate</h2>
+        <div class="bg-[#111] border border-white/10 rounded-2xl p-6 md:p-8 text-[15px] leading-relaxed text-[#b8ad95] space-y-4">
+          <p>
+            <strong class="text-white">Short:</strong> 50 Good Summers is an original feature
+            screenplay by Eric R. Gutierrez about a man with only a handful of summers left who
+            sets out to transform his remaining time into a legacy of meaning. Currently in its
+            third draft and seeking producers, directors, and acquisition partners worldwide.
+          </p>
+          <p>
+            <strong class="text-white">Long:</strong> From Desert Rich Productions, 50 Good
+            Summers is a meditative, emotionally devastating, and ultimately life-affirming
+            feature drama. When a man in his late forties receives a devastating medical
+            prognosis, he embarks on a final pilgrimage to reclaim the summers he let slip away
+            — and to ensure the ones ahead are unforgettable. The narrative unfolds across three
+            timelines and is set against the vast, unforgiving beauty of the American Southwest.
+            Written and created by Eric R. Gutierrez, the screenplay stands at 118 pages in its
+            current third draft, with principal photography targeted for summer 2027. All
+            worldwide rights, including remake, sequel, and television rights, are available.
+          </p>
+        </div>
+      </section>
+
+      <section class="mb-14" aria-labelledby="logline">
+        <h2 id="logline" class="text-3xl tracking-tight font-bold mb-5">Logline</h2>
+        <div class="bg-[#111] border-l-4 border-[#d4af37] pl-6 md:pl-8 py-6 rounded-r-xl">
+          <p class="italic text-[#d4af37]/90 text-lg leading-snug">
+            When a man learns he has only a handful of summers left, he sets out to transform
+            his remaining time into a legacy of meaning — before the sun sets on his final
+            season.
+          </p>
+        </div>
+      </section>
+
+      <section class="mb-14" aria-labelledby="facts">
+        <h2 id="facts" class="text-3xl tracking-tight font-bold mb-5">Project Facts</h2>
+        <dl class="divide-y divide-white/10 border-y border-white/10">
+          {
+            facts.map(([label, value]) => (
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-x-6 py-4">
+                <dt class="text-xs tracking-[2px] text-[#d4af37] uppercase">{label}</dt>
+                <dd class="text-[15px] text-[#d1c7b0] sm:text-right">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section class="mb-14" aria-labelledby="quotes">
+        <h2 id="quotes" class="text-3xl tracking-tight font-bold mb-5">Pull Quotes</h2>
+        <div class="space-y-4">
+          <blockquote class="bg-[#111] border border-white/10 rounded-2xl p-6 text-lg italic text-white/90 leading-snug">
+            “As long as you live and how you live, you are only granted 50 good summers, no more,
+            no less.”
+          </blockquote>
+          <blockquote class="bg-[#111] border border-white/10 rounded-2xl p-6 text-lg italic text-white/90 leading-snug">
+            “The question is not how many summers you have left. The question is: will they be
+            good ones?”
+          </blockquote>
+          <blockquote class="bg-[#111] border border-white/10 rounded-2xl p-6 text-lg italic text-white/90 leading-snug">
+            “Some summers burn so bright they illuminate every one that follows.”
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="mb-14" aria-labelledby="key-art">
+        <h2 id="key-art" class="text-3xl tracking-tight font-bold mb-5">Key Art</h2>
+        <p class="text-[15px] text-[#b8ad95] mb-6">
+          Approved images for editorial use with credit:
+          <span class="text-white/70">“50 Good Summers — Desert Rich Productions.”</span>
+          Right-click or open any image to download the full-resolution file.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            keyArt.map((img) => (
+              <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111]">
+                <a href={img.url} target="_blank" rel="noopener">
+                  <img
+                    src={img.url}
+                    alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </a>
+                <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-4 text-xs tracking-[1.5px] text-white/80 uppercase">
+                  {img.caption}
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="mb-4" aria-labelledby="press-contact">
+        <h2 id="press-contact" class="text-3xl tracking-tight font-bold mb-5">Press Contact</h2>
+        <div class="bg-[#111] border border-[#d4af37]/30 rounded-3xl p-8 md:p-10 text-center">
+          <div class="text-xs tracking-widest text-[#d4af37] mb-3">INTERVIEWS &amp; PRESS INQUIRIES</div>
+          <p class="text-[#c9b89a] mb-6">
+            For interviews, coverage, and press materials, reach out directly.
+            Responses within 48 hours.
+          </p>
+          <a
+            href="mailto:sales@desertrich.com?subject=Press%20Inquiry%20-%2050%20Good%20Summers"
+            class="cta-button inline-flex items-center justify-center px-8 py-3.5 rounded-full"
+          >
+            EMAIL SALES@DESERTRICH.COM
+          </a>
+          <p class="text-[10px] text-white/40 mt-6 tracking-widest">
+            © 2025–2026 DESERT RICH PRODUCTIONS · ALL RIGHTS RESERVED
+          </p>
+        </div>
+      </section>
+    </article>
+  </PageChrome>
+</Layout>

@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageChrome from '../components/PageChrome.astro';
+
+const structuredData = [
+  {
+    '@type': 'WebPage',
+    '@id': 'https://50goodsummers.com/privacy/#webpage',
+    url: 'https://50goodsummers.com/privacy/',
+    name: 'Privacy Policy | 50 Good Summers',
+    description: 'Privacy policy for 50goodsummers.com — what we collect, third-party services, and your rights.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': 'https://50goodsummers.com/#website' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://50goodsummers.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Privacy', item: 'https://50goodsummers.com/privacy/' },
+    ],
+  },
+];
+
+const sections = [
+  {
+    h: 'Information We Do Not Collect',
+    p: 'This website has no accounts, no contact forms, no shopping cart, and no analytics or advertising cookies. We do not knowingly collect personal information from visitors. If you browse 50goodsummers.com, there is nothing to sign up for and nothing to opt out of.',
+  },
+  {
+    h: 'Information You Choose to Send',
+    p: 'If you contact us by email (such as sales@desertrich.com), we receive whatever you choose to include — typically your name, email address, and your message. We use that information only to respond to your inquiry and to continue any conversation you start. We do not sell, rent, or trade it.',
+  },
+  {
+    h: 'Third-Party Services',
+    p: 'The site is hosted on Cloudflare, which processes network requests for performance and security (including email-address obfuscation to deter scrapers). Fonts are served by Google Fonts, which may receive your IP address when your browser requests the stylesheet. Cloudflare Images serves our images from imagedelivery.net. Each of these providers handles data under its own privacy policy.',
+  },
+  {
+    h: 'Cookies & Local Storage',
+    p: 'The site itself does not set cookies. Third-party providers such as Cloudflare or Google may set strictly necessary or security-related cookies in connection with serving the page; those are governed by their respective policies.',
+  },
+  {
+    h: 'Your Rights',
+    p: 'Depending on your location (including GDPR in the EEA/UK and the CCPA/CPRA in California), you may have rights to request access to, correction of, or deletion of personal information we hold about you — which, for most visitors, is nothing beyond any email correspondence you initiate. To make a request, email sales@desertrich.com with the subject line “Privacy Request.”',
+  },
+  {
+    h: 'Children',
+    p: 'This site is intended for industry professionals and general audiences interested in the project. It is not directed at children under 13, and we do not knowingly collect personal information from children.',
+  },
+  {
+    h: 'Changes & Contact',
+    p: 'We may update this policy occasionally; the latest version always lives at this page. Questions about privacy can be sent to sales@desertrich.com.',
+  },
+];
+---
+
+<Layout
+  title="Privacy Policy | 50 Good Summers"
+  description="Privacy policy for 50goodsummers.com — what we collect (almost nothing), third-party services, cookies, and how to exercise your rights."
+  canonical="https://50goodsummers.com/privacy/"
+  structuredData={structuredData}
+>
+  <PageChrome crumbs={[{ label: 'Privacy' }]}>
+    <article class="max-w-3xl mx-auto px-6 py-14 md:py-20">
+      <div class="uppercase tracking-[3px] text-xs text-[#d4af37] mb-4">Legal</div>
+      <h1 class="text-5xl md:text-6xl leading-none tracking-tighter font-bold mb-6">
+        Privacy Policy
+      </h1>
+      <div class="gold-line w-20 mb-8"></div>
+      <p class="text-sm text-white/40 mb-10">Last updated: September 23, 2026</p>
+
+      <div class="space-y-8 text-[16px] leading-relaxed text-[#d1c7b0]">
+        {
+          sections.map((section) => (
+            <section aria-labelledby={`h-${section.h.replace(/\s+/g, '-').toLowerCase()}`}>
+              <h2
+                id={`h-${section.h.replace(/\s+/g, '-').toLowerCase()}`}
+                class="text-2xl tracking-tight font-bold text-white mb-3"
+              >
+                {section.h}
+              </h2>
+              <p>{section.p}</p>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </PageChrome>
+</Layout>

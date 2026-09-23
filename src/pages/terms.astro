@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageChrome from '../components/PageChrome.astro';
+
+const structuredData = [
+  {
+    '@type': 'WebPage',
+    '@id': 'https://50goodsummers.com/terms/#webpage',
+    url: 'https://50goodsummers.com/terms/',
+    name: 'Terms of Use | 50 Good Summers',
+    description: 'Terms of use for 50goodsummers.com — intellectual property, acceptable use, and disclaimers.',
+    inLanguage: 'en-US',
+    isPartOf: { '@id': 'https://50goodsummers.com/#website' },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://50goodsummers.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Terms', item: 'https://50goodsummers.com/terms/' },
+    ],
+  },
+];
+
+const sections = [
+  {
+    h: 'Acceptance of Terms',
+    p: 'By accessing 50goodsummers.com, you agree to these terms. If you do not agree, please do not use the site.',
+  },
+  {
+    h: 'Intellectual Property',
+    p: 'The site and its content — including the title “50 Good Summers,” the logo, copy, artwork, photographs, and the underlying screenplay material — are owned by or licensed to Desert Rich Productions and are protected by copyright and trademark law. © 2025–2026 Desert Rich Productions. All rights reserved.',
+  },
+  {
+    h: 'Permitted Use',
+    p: 'You may view, link to, and share pages of this site for personal, editorial, or industry purposes, provided that credit is given to “50 Good Summers — Desert Rich Productions.” Press may reproduce approved key art from the Press page with that credit.',
+  },
+  {
+    h: 'Restrictions',
+    p: 'You may not copy, reproduce, distribute, sell, license, create derivative works from, or reverse-engineer any content on this site — including excerpts of the screenplay — without prior written permission. Full scripts are shared only with qualified inquiries under confidentiality. Scraping, mass downloading, and automated extraction are prohibited.',
+  },
+  {
+    h: 'Inquiries & Confidentiality',
+    p: 'Materials shared in response to an acquisition inquiry are confidential. By requesting and receiving script materials, you agree to keep them confidential and not to distribute them without written authorization.',
+  },
+  {
+    h: 'No Warranties',
+    p: 'The site is provided “as is” for informational purposes about a project in development. Development status, dates, and availability of rights may change without notice. Nothing on this site constitutes an offer, contract, or commitment to sell any rights.',
+  },
+  {
+    h: 'External Links',
+    p: 'The site may link to third-party services (such as email providers). We are not responsible for the content or privacy practices of those services.',
+  },
+  {
+    h: 'Contact',
+    p: 'Questions about these terms — or permissions requests — can be sent to sales@desertrich.com.',
+  },
+];
+---
+
+<Layout
+  title="Terms of Use | 50 Good Summers"
+  description="Terms of use for 50goodsummers.com — intellectual property rights, acceptable use, screenplay confidentiality, and disclaimers."
+  canonical="https://50goodsummers.com/terms/"
+  structuredData={structuredData}
+>
+  <PageChrome crumbs={[{ label: 'Terms' }]}>
+    <article class="max-w-3xl mx-auto px-6 py-14 md:py-20">
+      <div class="uppercase tracking-[3px] text-xs text-[#d4af37] mb-4">Legal</div>
+      <h1 class="text-5xl md:text-6xl leading-none tracking-tighter font-bold mb-6">
+        Terms of Use
+      </h1>
+      <div class="gold-line w-20 mb-8"></div>
+      <p class="text-sm text-white/40 mb-10">Last updated: September 23, 2026</p>
+
+      <div class="space-y-8 text-[16px] leading-relaxed text-[#d1c7b0]">
+        {
+          sections.map((section) => (
+            <section aria-labelledby={`h-${section.h.replace(/\s+/g, '-').toLowerCase()}`}>
+              <h2
+                id={`h-${section.h.replace(/\s+/g, '-').toLowerCase()}`}
+                class="text-2xl tracking-tight font-bold text-white mb-3"
+              >
+                {section.h}
+              </h2>
+              <p>{section.p}</p>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </PageChrome>
+</Layout>
