@@ -2,5 +2,12 @@
   "name": "www-50goodsummers-redirect",
   "main": "src/index.js",
   "compatibility_date": "2026-09-01",
-  "workers_dev": false
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "www.50goodsummers.com/*",
+      "zone_name": "50goodsummers.com"
+    }
+  ]
 }
+
